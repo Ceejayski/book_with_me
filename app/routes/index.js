@@ -3,7 +3,7 @@ import Route from '@ember/routing/route';
 export default Route.extend({
 
   model(params) {
-    return this.get('store').createRecord('rental', {
+    return this.get('store').findAll('rental', {
        title: 'Some nice apartment',
        city: 'New York',
        street: 'Time Square',
