@@ -1,11 +1,11 @@
 import { JSONAPISerializer } from 'ember-cli-mirage';
+import { underscore } from '@ember/string'
 
 export default JSONAPISerializer.extend({
   keyForAttribute: function(attr) {
-    debugger;
-    return Ember.String.underscore(attr);
+    return underscore(attr);
   },
   keyForRelationship: function(key) {
-    return Ember.String.underscore(key);
+    return underscore(key);
   }
 });
