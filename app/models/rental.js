@@ -5,9 +5,10 @@ export default DS.Model.extend({
   city: DS.attr(),
   street: DS.attr(),
   category: DS.attr(),
+  shared: DS.attr(),
   image: DS.attr(),
   bedrooms: DS.attr(),
   description: DS.attr(),
   daily_rate: DS.attr(),
-  created_at: DS.attr(),
+  created_at: DS.attr()
 });
