@@ -20,7 +20,8 @@ export default Factory.extend({
     return faker.random.boolean();
   },
   image(){
-    return 'http://via.placeholder.com/700x500';
+    // return rentalImages[Math.floor(Math.random() * rentalImages.length)];
+    return faker.list.random(...rentalImages)();
   },
   bedrooms(){
     return faker.list.random(1,2,3,4,5)();
@@ -32,4 +33,11 @@ export default Factory.extend({
     return faker.list.random(13,21,33,44,25,13,123,41,23,42,41,54)();
   }
 });
+
+const rentalImages = [
+  'https://booksync-jerga-prod.s3.amazonaws.com/uploads/rental/image/1/image.jpeg',
+  'https://booksync-jerga-prod.s3.amazonaws.com/uploads/rental/image/5/image.jpeg',
+  'https://booksync-jerga-prod.s3.amazonaws.com/uploads/rental/image/12/image.jpeg',
+  'https://booksync-jerga-prod.s3.amazonaws.com/uploads/rental/image/13/image.jpeg'
+  ]
 
