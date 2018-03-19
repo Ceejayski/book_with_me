@@ -6,19 +6,10 @@ moduleForComponent('rental-booking', 'Integration | Component | rental booking',
 });
 
 test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
-
-  this.render(hbs`{{rental-booking}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
   this.render(hbs`
     {{#rental-booking}}
-      template block text
     {{/rental-booking}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$('.booking').length > 0, true);
 });
