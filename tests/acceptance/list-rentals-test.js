@@ -17,7 +17,7 @@ test('visiting /', function(assert) {
 test('should list available rentals.', function (assert) {
   visit('/');
   andThen(function() {
-    const isLoadedCard = find('.bwm-card').length > 0 ? true : false;
+    const isLoadedCard = find('.bwm-card').length === 10 ? true : false;
     assert.equal(isLoadedCard, true, 'should see rental cards');
   });
 });
