@@ -4,8 +4,8 @@ export default Factory.extend({
   id(i) {
     return i;
   },
-  title(){
-    return faker.lorem.words();
+  title(i){
+    return `Some nice title ${i}`;
   },
   city(){
     return faker.address.city();
