@@ -6,10 +6,19 @@ moduleForComponent('rental-type', 'helper:rental-type', {
 });
 
 // Replace this with your real tests.
-test('it renders', function(assert) {
-  this.set('inputValue', '1234');
+test('it renders with shared value', function(assert) {
+  this.set('inputValue', true);
 
   this.render(hbs`{{rental-type inputValue}}`);
 
-  assert.equal(this.$().text().trim(), '1234');
+  assert.equal(this.$().text().trim(), 'shared');
+});
+
+// Replace this with your real tests.
+test('it renders with shared value', function(assert) {
+  this.set('inputValue', false);
+
+  this.render(hbs`{{rental-type inputValue}}`);
+
+  assert.equal(this.$().text().trim(), 'whole');
 });
