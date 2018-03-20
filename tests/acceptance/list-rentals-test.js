@@ -1,5 +1,12 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'book-with-me/tests/helpers/module-for-acceptance';
+import Service from '@ember/service';
+
+const StubMapsService = Service.extend({
+  getMapElement() {
+    return document.createElement('div');
+  }
+});
 
 moduleForAcceptance('Acceptance | list rentals', {
   beforeEach() {
@@ -23,6 +30,9 @@ test('should list available rentals.', function (assert) {
 });
 
 test('should show single view of rental', function (assert) {
+  this.application.register('service:mapsMock', StubMapsService);
+  this.application.inject('component', 'maps', 'service:mapsMock');
+
   visit('/rentals/1');
   andThen(function() {
     assert.equal(find('.container').length > 0, true, 'should see rental cards');
