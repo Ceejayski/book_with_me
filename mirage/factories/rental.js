@@ -13,7 +13,7 @@ export default Factory.extend({
   },
   street(){
     // return faker.address.streetName();
-    return 'Banicka ';
+    return 'Banicka';
   },
   category(){
     return faker.list.random('apartment', 'house', 'condo')();

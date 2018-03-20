@@ -1,0 +1,8 @@
+<h1>Join our community...</h1>
+{{#bs-form formLayout=formLayout model=this onSubmit=(action "submit") as |form|}}
+  {{form.element controlType="username" label="Username" placeholder="Username" property="email" required  =true}}
+  {{form.element controlType="email" label="Email" placeholder="Email" property="email" required=true}}
+  {{form.element controlType="password" label="Password" placeholder="Password" property="password" required=true helpText="Minimum 6 characters"}}
+  {{form.element controlType="password" label="Confirm Password" placeholder="Confirm Password" property="password" required=true helpText="Minimum 6 characters"}}
+  {{bs-button class="btn-bwm" defaultText="Submit" type="primary" buttonType="submit"}}
+{{/bs-form}}
