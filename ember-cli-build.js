@@ -9,10 +9,15 @@ module.exports = function(defaults) {
     },
     'ember-cli-babel': {
       includePolyfill: true
+    },
+    'ember-bootstrap': {
+      'bootstrapVersion': 4,
+      'importBootstrapFont': true,
+      'importBootstrapCSS': false
     }
   });
 
-  app.import('node_modules/bootstrap/dist/css/bootstrap.min.css', { destDir: 'assets' });
+
 
   return app.toTree();
 };

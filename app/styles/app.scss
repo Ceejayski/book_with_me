@@ -1,3 +1,5 @@
+@import "ember-bootstrap/bootstrap";
+
 html, body, p {
   color: $main-text-color-gray;
 }
@@ -20,4 +22,16 @@ html, body, p {
   min-height: 300px;
   height: 100%;
   background-color: grey;
+}
+
+.btn-bwm {
+  background-color: $main-color;
+  border-color: $main-color;
+  padding: 15px 30px;
+  font-size: 20px;
+
+  &:hover, &:focus {
+    border-color: $main-color;
+    background-color: $main-color;
+  }
 }
