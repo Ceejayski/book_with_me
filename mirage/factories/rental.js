@@ -8,10 +8,12 @@ export default Factory.extend({
     return `Some nice title ${i}`;
   },
   city(){
-    return faker.address.city();
+    // return faker.address.city();
+    return 'Spisska Nova Ves';
   },
   street(){
-    return faker.address.streetName();
+    // return faker.address.streetName();
+    return 'Banicka ';
   },
   category(){
     return faker.list.random('apartment', 'house', 'condo')();
