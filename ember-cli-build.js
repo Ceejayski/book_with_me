@@ -17,7 +17,8 @@ module.exports = function(defaults) {
     }
   });
 
-
+  app.import('bower_components/bcryptjs/dist/bcrypt.js');
+  app.import('vendor/shims/bcrypt.js');
 
   return app.toTree();
 };

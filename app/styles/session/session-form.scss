@@ -1,6 +1,10 @@
 .session-form {
   color: $main-text-color-gray;
 
+  form {
+    margin-bottom: 10px;
+  }
+
   h1 {
     font-weight: 700;
     margin-bottom: 30px;

@@ -1,4 +1,9 @@
 <h1>Find your dream place...</h1>
+{{#if registered}}
+  <div class="alert alert-success">
+    You have been succesfully registered, login and book your place today.
+  </div>
+{{/if}}
 {{#bs-form formLayout=formLayout model=this onSubmit=(action "submit") as |form|}}
   {{form.element controlType="email" label="Email" placeholder="Email" property="email" required=true}}
   {{form.element controlType="password" label="Password" placeholder="Password" property="password" required=true helpText="Minimum 6 characters"}}
