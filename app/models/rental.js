@@ -10,5 +10,6 @@ export default DS.Model.extend({
   bedrooms: DS.attr(),
   description: DS.attr(),
   daily_rate: DS.attr(),
-  created_at: DS.attr()
+  created_at: DS.attr(),
+  user: DS.belongsTo('user'),
 });
