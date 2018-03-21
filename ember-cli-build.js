@@ -12,10 +12,13 @@ module.exports = function(defaults) {
     },
     'ember-bootstrap': {
       'bootstrapVersion': 4,
-      'importBootstrapFont': true,
-      'importBootstrapCSS': false
+      'importBootstrapCSS': false,
+      'importBootstrapFont': false
     }
   });
+
+  app.import('bower_components/bcryptjs/dist/bcrypt.js');
+  app.import('vendor/shims/bcrypt.js');
 
   return app.toTree();
 };
