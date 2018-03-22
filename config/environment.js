@@ -29,6 +29,10 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV['BWM_API'] = 'localhost:4200';
+    // ENV['ember-cli-mirage'] = {
+    // enabled: false
+    // };
   }
 
   if (environment === 'test') {

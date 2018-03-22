@@ -24,6 +24,12 @@ html, body, p {
   background-color: grey;
 }
 
+.clickable {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .btn-bwm {
   background-color: $main-color;
   border-color: $main-color;
