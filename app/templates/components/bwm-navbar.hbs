@@ -9,9 +9,12 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav ml-auto">
-
-      {{#link-to "login" class="nav-item nav-link"}} Login {{/link-to}}
-      {{#link-to "register" class="nav-item nav-link"}} Register {{/link-to}}
+      {{#if session.isAuthenticated}}
+        <a class="nav-item nav-link clickable" {{action 'invalidateSession'}}>Logout</a>
+      {{else}}
+        {{#link-to "login" class="nav-item nav-link"}} Login {{/link-to}}
+        {{#link-to "register" class="nav-item nav-link"}} Register {{/link-to}}
+      {{/if}}
     </div>
   </div>
 </nav>
