@@ -9,8 +9,9 @@ moduleForAcceptance('Acceptance | login user', {
   }
 });
 
-test('succes submitting form should redirect to index', async function(assert) {
+test('succes submitting form should redirect to rentals', async function(assert) {
   const done = assert.async();
+  server.create('rental', {city: 'New York'});
   const {username, email, password} = server.create('user').attrs;
 
   server.schema.users.create({

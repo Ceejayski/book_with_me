@@ -17,7 +17,7 @@ export default Component.extend({
       this.get('session')
         .authenticate('authenticator:devise',user.email, user.password)
           .then(() => {
-            this.get('router').transitionTo('/rentals');
+            this.get('router').transitionTo('rentals');
             this.set('isLoading', false);})
           .catch((reason) => {
             this.set('isLoading', false);

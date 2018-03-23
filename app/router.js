@@ -10,6 +10,7 @@ Router.map(function() {
   this.route('rentals', function() {
     this.route('show' , {path: '/:rental_id'});
   });
+  this.route('homes' , {path: 'rentals/:city/homes'});
   this.route('register');
   this.route('login');
 });

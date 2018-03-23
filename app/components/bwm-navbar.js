@@ -7,6 +7,13 @@ export default Component.extend({
   actions: {
     invalidateSession() {
       this.get('session').invalidate().then(() => this.get('router').transitionTo('/login'));
+    },
+
+    search() {
+      const city = this.get('searchCity');
+      if (city) {
+        this.get('router').transitionTo('homes', city);
+      }
     }
   }
 });

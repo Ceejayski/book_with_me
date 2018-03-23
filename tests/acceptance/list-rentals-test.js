@@ -14,10 +14,10 @@ moduleForAcceptance('Acceptance | list rentals', {
   }
 });
 
-test('visiting /', function(assert) {
+test('visiting / should redirect', function(assert) {
   visit('/');
   andThen(function() {
-    assert.equal(currentURL(), '/');
+    assert.equal(currentURL(), '/rentals');
   });
 });
 

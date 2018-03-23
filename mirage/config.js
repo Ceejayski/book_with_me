@@ -17,8 +17,25 @@ export default function() {
 
   this.getMRoute('/secret', authMiddleware, () => {});
 
-  this.get('/rentals', (schema) => {
-    return schema.rentals.all();
+  this.get('/rentals', (schema, request) => {
+    let rentals = [];
+    const city = request.queryParams['filter[city]'];
+
+    if (city) {
+      rentals = schema.rentals.where({city});
+    } else {
+      rentals = schema.rentals.all();
+    }
+
+    return rentals.length > 0 ? rentals : new Response(422, {some: 'header', 'Content-Type': 'application/json'}, {
+        errors: [{
+          title: 'No rentals found',
+          detail: 'There are no rentals for city ' + city,
+          source: {
+            pointer: "/data",
+          },
+        }]
+      })
   });
 
   this.get('/rentals/:id', (schema, request) => {

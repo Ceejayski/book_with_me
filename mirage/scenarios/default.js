@@ -1,5 +1,17 @@
 
 export default function(server) {
-  server.createList('rental', 10);
+  server.create('rental', {city: 'Bratislava'});
+  server.create('rental', {city: 'Bratislava'});
+  server.create('rental', {city: 'Bratislava'});
+  server.create('rental', {city: 'Bratislava'});
+  server.create('rental', {city: 'Bratislava'});
+  server.create('rental', {city: 'New York'});
+  server.create('rental', {city: 'New York'});
+  server.create('rental', {city: 'New York'});
+  server.create('rental', {city: 'New York'});
+  server.create('rental', {city: 'New York'});
+  server.create('rental', {city: 'New York'});
+  server.create('rental', {city: 'New York'});
+  server.create('rental', {city: 'New York'});
   server.create('user');
 }
