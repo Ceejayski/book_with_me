@@ -4,8 +4,9 @@
   <label>Dates</label>
   {{date-range-picker
       ranges=false
-      start='2018-03-16'
       opens='left'
+
+      isInvalidDate=(action "validateDate")
       }}
   <div class="form-group">
     <label for="guests">Guests</label>

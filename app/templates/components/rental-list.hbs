@@ -1,7 +1,7 @@
 <div class="row">
   {{#each rentals as |rental|}}
       <div class='col-md-3 col-sm-6'>
-        {{#link-to "rentals.show" rental class="bwm-card-link"}}
+        {{#link-to "rentals.show" rental.id class="bwm-card-link"}}
           <div class="card bwm-card">
             <img class="card-img-top" src="{{rental.image}}" alt="">
             <div class="card-block">
