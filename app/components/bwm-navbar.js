@@ -11,7 +11,10 @@ export default Component.extend({
 
     search() {
       const city = this.get('searchCity');
-      if (city) {
+
+      if (!city) {
+        this.get('router').transitionTo('rentals');
+      } else {
         this.get('router').transitionTo('homes', city);
       }
     }

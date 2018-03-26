@@ -5,5 +5,6 @@ export default DS.Model.extend({
   email: DS.attr(),
   password: DS.attr(),
   password_confirmation: DS.attr(),
-  rentals: DS.hasMany('rental')
+  rentals: DS.hasMany('rental'),
+  bookings: DS.hasMany('booking')
 });
