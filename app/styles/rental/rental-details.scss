@@ -122,3 +122,30 @@
     }
   }
 }
+
+// Booking modal
+
+.bwm-booking-container {
+  padding: 20px;
+  width: 350px;
+  font-size: 14px;
+
+  .title {
+    font-weight: 700;
+    font-size: 24px;
+  }
+
+  .buttons {
+    margin: 15px 0px;
+  }
+
+  em {
+    font-style: normal;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  p {
+    margin: 0;
+  }
+}

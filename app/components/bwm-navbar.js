@@ -3,10 +3,11 @@ import { inject as service } from '@ember/service';
 
 export default Component.extend({
   session: service('session'),
+  userService: service('user'),
 
   actions: {
     invalidateSession() {
-      this.get('session').invalidate().then(() => this.get('router').transitionTo('/login'));
+      this.get('session').invalidate();
     },
 
     search() {

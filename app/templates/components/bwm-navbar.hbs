@@ -10,6 +10,7 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav ml-auto">
       {{#if session.isAuthenticated}}
+        <a class="nav-item nav-link" > Welcome <span class="user">{{userService.currentUser.username}}</span></a>
         <a class="nav-item nav-link clickable" {{action 'invalidateSession'}}>Logout</a>
       {{else}}
         {{#link-to "login" class="nav-item nav-link"}} Login {{/link-to}}
