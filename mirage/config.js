@@ -1,13 +1,15 @@
 import Response from 'ember-cli-mirage/response';
 import bcrypt from 'bcrypt';
 import jwt from 'npm:jwt-simple';
+import moment from 'moment';
+import { underscore } from '@ember/string';
 const SECRET = 'askdasdnasdn';
 
 export default function() {
   this.namespace = '/api/v1';
 
   this.getMRoute = (path, middleware, callback) => {
-    this.get(path, (schema, request) => {
+    this.get(path, function(schema, request) {
       const err = middleware(request);
       if (err) return err;
 
@@ -15,7 +17,72 @@ export default function() {
     });
   };
 
+  this.postMRoute = (path, middleware, callback) => {
+    this.post(path, function (schema, request){
+      const err = middleware(request);
+      if (err) return err;
+
+      return callback.call(this, schema, request);
+    });
+  };
+
   this.getMRoute('/secret', authMiddleware, () => {});
+
+  this.postMRoute('/bookings', authMiddleware, function(schema) {
+    const attrs = underscorize(this.normalizedRequestAttrs());
+    const booking = schema.bookings.new(attrs);
+
+    if (!booking.attrs.start_at || !booking.attrs.end_at || !booking.attrs.userId || !booking.attrs.rentalId) {
+      return new Response(422, {some: 'header', 'Content-Type': 'application/json'}, {
+        errors: [{
+          title: 'Data missing',
+          detail: 'Start at or End at dates are missing '
+        }]
+      })
+    }
+
+    const currentRental = schema.rentals.find(booking.rentalId);
+
+    if (currentRental.userId == booking.userId) {
+      return new Response(422, {some: 'header', 'Content-Type': 'application/json'}, {
+        errors: [{
+          title: 'Invalid user',
+          detail: 'You cannot place booking on your own rental'
+        }]
+      })
+    }
+
+    if (isValidBooking(booking, currentRental)) {
+      booking.save();
+      return this.serialize(booking);
+    } else {
+      return new Response(422, {some: 'header', 'Content-Type': 'application/json'}, {
+        errors: [{
+          title: 'Invalid booking',
+          detail: 'Choosen dates are already taken.'
+        }]
+      })
+    }
+  });
+
+  function isValidBooking(proposedBooking, rental) {
+    let isValid = false;
+
+    if (rental.bookings && rental.bookings.length) {
+       isValid = rental.bookings.models.every(booking => {
+
+        const proposedStart = moment(proposedBooking.attrs.start_at);
+        const proposedEnd = moment(proposedBooking.attrs.end_at);
+        const actualStart = moment(booking.attrs.start_at);
+        const actualEnd = moment(booking.attrs.end_at);
+
+        return ((actualStart < proposedStart && actualEnd < proposedStart) || (proposedEnd < actualEnd && proposedEnd < actualStart));
+      });
+    }
+
+    return isValid;
+  }
+
 
   this.get('/rentals', (schema, request) => {
     let rentals = [];
@@ -120,3 +187,19 @@ function parseJwt (token) {
   const base64 = base64Url.replace('-', '+').replace('_', '/');
   return JSON.parse(window.atob(base64));
 }
+
+function underscorize(attrs) {
+  const payload = {};
+
+  Object.keys(attrs).forEach((key) => {
+    if (key !== 'id' && key.toLowerCase().indexOf("id") <= 0) {
+      payload[underscore(key)] = attrs[key];
+      delete attrs[key];
+    } else {
+      payload[key] = attrs[key];
+    }
+  });
+
+  return payload;
+}
+
