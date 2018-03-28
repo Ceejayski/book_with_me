@@ -28,6 +28,18 @@ export default function() {
 
   this.getMRoute('/secret', authMiddleware, () => {});
 
+  this.postMRoute('/rentals', authMiddleware, function(schema, request) {
+    const attrs = underscorize(this.normalizedRequestAttrs());
+    const rental = schema.rentals.new(attrs);
+
+    if (!rental.attrs.city || !rental.attrs.title || !rental.attrs.daily_rate || !rental.attrs.image) {
+      return invalidResponse(422, 'Data missing', 'Title, City, Daily rate, Image are required fields');
+    }
+
+    rental.save();
+    return this.serialize(rental);
+  });
+
   this.postMRoute('/bookings', authMiddleware, function(schema) {
     const attrs = underscorize(this.normalizedRequestAttrs());
     const booking = schema.bookings.new(attrs);

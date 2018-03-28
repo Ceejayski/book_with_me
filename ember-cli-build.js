@@ -19,6 +19,7 @@ module.exports = function(defaults) {
 
   app.import('bower_components/bcryptjs/dist/bcrypt.js');
   app.import('vendor/shims/bcrypt.js');
+  app.import('bower_components/bootstrap/dist/js/bootstrap.js', { destDir: 'assets' });
 
   return app.toTree();
 };
