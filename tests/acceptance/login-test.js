@@ -23,7 +23,8 @@ test('succes submitting form should redirect to rentals', async function(assert)
   await fillIn('.email > input', 'test@gmail.com');
   await fillIn('.password > input', 'testtest');
 
-  $('.btn').click();
+  $('.btn-bwm').click();
+
   stop();
   later(() => {
     assert.equal(currentURL(), '/rentals');
@@ -33,10 +34,12 @@ test('succes submitting form should redirect to rentals', async function(assert)
 
 test('not equal password submitting form should show error', async function(assert) {
   const done = assert.async();
+
   await fillIn('.email > input', 'test@gmail.com');
   await fillIn('.password > input', 'asdadadaadasda');
 
-  $('.btn').click();
+  $('.btn-bwm').click();
+
   stop();
   later(() => {
     assert.equal(find('.alert').text().trim(), 'Wrong email or password');

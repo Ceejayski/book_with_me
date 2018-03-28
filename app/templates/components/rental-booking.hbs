@@ -13,7 +13,7 @@
       }}
   <div class="form-group">
     <label for="guests">Guests</label>
-    {{input value=booking.guests max=5 placeholder="5 guests max" class="form-control" type="number"}}
+    {{input value=booking.guests max=5 placeholder="5 guests max" class="form-control guests" type="number"}}
   </div>
   {{#if isShowingModal}}
     {{#modal-dialog onClose="toggleModal"
@@ -30,7 +30,7 @@
         <p>Price: <em>{{totalPrice}}$ </em></p>
         <p>Do you confirm your booking for selected days?</p>
         <div class="buttons">
-          <button class="btn btn-primary btn-bwm" {{action "createBooking"}}>Confirm</button>
+          <button class="btn btn-primary booking-confirm btn-bwm" {{action "createBooking"}}>Confirm</button>
           <button class="btn btn-primary btn-bwm" {{action "toggleModal"}}>Cancel</button>
         </div>
         {{#if errorMessages}}

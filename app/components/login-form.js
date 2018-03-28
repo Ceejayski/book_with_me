@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 
 export default Component.extend({
   session: service('session'),
+  isLoading: false,
 
   init() {
     this._super(...arguments);
@@ -18,7 +19,8 @@ export default Component.extend({
         .authenticate('authenticator:devise',user.email, user.password)
           .then(() => {
             this.get('router').transitionTo('rentals');
-            this.set('isLoading', false);})
+            this.set('isLoading', false);
+          })
           .catch((reason) => {
             this.set('isLoading', false);
             this.set('errorMessages', reason.errors || reason.responseJSON.errors);
