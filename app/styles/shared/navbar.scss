@@ -13,9 +13,33 @@
     letter-spacing: 0.5px;
     color: #f46767;
     font-weight: 700;
+    position: relative;
+
+    img {
+      margin-left: -10px;
+      width: 100px;
+    }
+
+    &:hover, &:focus {
+      color: $main-color;
+    }
   }
 
   .nav-item {
     font-size: 14px;
   }
+
+  // DROPDOWN
+  .dropdown-item {
+    font-size: 14px;
+
+    &.active {
+      background-color: $main-color;
+    }
+
+    &:focus {
+     background-color: $main-color;
+    }
+  }
+
 }

@@ -81,6 +81,16 @@
         }
       }
     }
+
+    .teaser {
+      background-color: $main-color;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      border-radius: 5px;
+      display: block;
+      margin-bottom: 5px;
+    }
   }
 
   // BOOKING SECTION

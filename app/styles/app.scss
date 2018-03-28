@@ -32,14 +32,31 @@ html, body, p {
   }
 }
 
+.btn-bwm-confirm {
+  border-color: $main-color;
+  color: $main-color;
+
+  &:hover, &:focus, &:active {
+    background-color: transparent !important;
+    border-color: $main-color !important;
+    color: $main-color !important;
+    box-shadow: none !important;
+  }
+}
+
 .btn-bwm {
   background-color: $main-color;
   border-color: $main-color;
   padding: 15px 30px;
   font-size: 20px;
 
-  &:hover, &:focus {
-    border-color: $main-color;
-    background-color: $main-color;
+  &:hover, &:focus, &:active {
+    border-color: $main-color !important;
+    background-color: $main-color !important;
   }
 }
+
+
+@import "ember-power-select/themes/bootstrap";
+
+@import "ember-power-select";
