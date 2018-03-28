@@ -17,7 +17,7 @@ test('succes submitting form should redirect to login page', async function(asse
   await fillIn('.password > input', 'benny1111');
   await fillIn('.password-confirmation > input', 'benny1111');
 
-  $('.btn').click();
+  $('.btn-bwm').click();
   stop();
   later(() => {
     assert.equal(currentURL(), '/login?r=1');
@@ -33,7 +33,7 @@ test('not equal password submitting form should show error', async function(asse
   await fillIn('.password > input', 'benny1111');
   await fillIn('.password-confirmation > input', '1');
 
-  $('.btn').click();
+  $('.btn-bwm').click();
   stop();
   later(() => {
     assert.equal(find('.alert').text().trim(), 'Password must be same as confirmation');
@@ -49,7 +49,7 @@ test('same user submitting form should show error', async function(assert) {
   await fillIn('.password > input', 'testtest');
   await fillIn('.password-confirmation > input', 'testtest');
 
-  $('.btn').click();
+  $('.btn-bwm').click();
   stop();
   later(() => {
     assert.equal(find('.alert').text().trim(), 'User with this email already exists');

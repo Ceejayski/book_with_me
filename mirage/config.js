@@ -32,36 +32,22 @@ export default function() {
     const attrs = underscorize(this.normalizedRequestAttrs());
     const booking = schema.bookings.new(attrs);
 
+
     if (!booking.attrs.start_at || !booking.attrs.end_at || !booking.attrs.userId || !booking.attrs.rentalId) {
-      return new Response(422, {some: 'header', 'Content-Type': 'application/json'}, {
-        errors: [{
-          title: 'Data missing',
-          detail: 'Start at or End at dates are missing '
-        }]
-      })
+      return invalidResponse(422, 'Data missing', 'Start at or End at dates are missing ');
     }
 
     const currentRental = schema.rentals.find(booking.rentalId);
 
     if (currentRental.userId == booking.userId) {
-      return new Response(422, {some: 'header', 'Content-Type': 'application/json'}, {
-        errors: [{
-          title: 'Invalid user',
-          detail: 'You cannot place booking on your own rental'
-        }]
-      })
+      return invalidResponse(422, 'Invalid user', 'You cannot place booking on your own rental.');
     }
 
     if (isValidBooking(booking, currentRental)) {
       booking.save();
       return this.serialize(booking);
     } else {
-      return new Response(422, {some: 'header', 'Content-Type': 'application/json'}, {
-        errors: [{
-          title: 'Invalid booking',
-          detail: 'Choosen dates are already taken.'
-        }]
-      })
+      return invalidResponse(422, 'Invalid booking', 'Choosen dates are already taken.');
     }
   });
 
@@ -94,15 +80,7 @@ export default function() {
       rentals = schema.rentals.all();
     }
 
-    return rentals.length > 0 ? rentals : new Response(422, {some: 'header', 'Content-Type': 'application/json'}, {
-        errors: [{
-          title: 'No rentals found',
-          detail: 'There are no rentals for city ' + city,
-          source: {
-            pointer: "/data",
-          },
-        }]
-      })
+    return rentals.length > 0 ? rentals : invalidResponse(422, 'No rentals found', 'There are no rentals for city ' + city);
   });
 
   this.get('/rentals/:id', (schema, request) => {
@@ -123,12 +101,7 @@ export default function() {
         }
       }
 
-      return new Response(422, {some: 'header', 'Content-Type': 'application/json'}, {
-        errors: [{
-          title: 'Email not found',
-          detail: 'Wrong email or password'
-        }]
-      })
+      return invalidResponse(422, 'Email not found', 'Wrong email or password');
   });
 
   this.post('/users', function (schema, request) {
@@ -136,22 +109,12 @@ export default function() {
       const {username, password, password_confirmation, email} = JSON.parse(request.requestBody).user;
 
       if (password !== password_confirmation) {
-        return resolve(new Response(422, {some: 'header', 'Content-Type': 'application/json'}, {
-          errors: [{
-            title: 'password is not same',
-            detail: 'Password must be same as confirmation'
-          }]
-        }))
+        return resolve(invalidResponse(422, 'password is not same', 'Password must be same as confirmation'));
       }
       const existingUser = schema.db.users.where({email})[0];
 
       if (existingUser) {
-        return resolve(new Response(422, {some: 'header', 'Content-Type': 'application/json'}, {
-          errors: [{
-            title: 'User already exists',
-            detail: 'User with this email already exists'
-          }]
-        }))
+        return resolve(invalidResponse(422, 'User already exists', 'User with this email already exists'));
       }
 
       const salt = bcrypt.genSaltSync(10);
@@ -168,18 +131,22 @@ export default function() {
   });
 }
 
+function invalidResponse(status, title, detail) {
+  return new Response(status, {some: 'header', 'Content-Type': 'application/json'}, {
+    errors: [{
+      title,
+      detail
+    }]
+  })
+}
+
 function authMiddleware(request) {
   const token = request.requestHeaders.Authorization || '';
   if (token) {
     const user = parseJwt(token.split(' ')[1]);
     if (user.email) return;
   }
-  return new Response(422, {some: 'header', 'Content-Type': 'application/json'}, {
-    errors: [{
-      title: 'Not authorized',
-      detail: 'You are not authorized!'
-    }]
-  })
+  return invalidResponse(422, 'Not authorized', 'You are not authorized!');
 }
 
 function parseJwt (token) {

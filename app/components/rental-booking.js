@@ -10,6 +10,7 @@ export default Component.extend({
   store: service(),
   userService: service('user'),
   notify: service('notify'),
+  bookingService: service('booking'),
 
   takenDates: null,
   booking: null,
@@ -25,8 +26,9 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     this.set('takenDates', []);
-    this.set('booking', Object.create());
     this.countTakenDates();
+
+    this.set('booking', Object.create());
   },
 
   countTakenDates(){
@@ -43,7 +45,10 @@ export default Component.extend({
   },
 
   getCurrentUser() {
-    return this.get('userService').getUser();
+    const user = this.get('userService').getUser();
+    this.set('booking.user', user);
+
+    return user;
   },
 
   actions: {
@@ -61,24 +66,24 @@ export default Component.extend({
       }
     },
     createBooking: function() {
-      this.get('store').createRecord('booking', {
-        start_at: this.get('booking.start_at'),
-        end_at: this.get('booking.end_at'),
-        total_price: this.get('totalPrice'),
-        days: this.get('daysOfStay'),
-        guests: this.get('booking.guests'),
-        user: this.getCurrentUser(),
-        rental: this.get('rental')
-    }).save().then(() => {
-      this.set('booking', Object.create());
-      this.countTakenDates();
-      this.toggleProperty('isShowingModal');
-      this.get('notify').success('Your booking has been successfuly placed', {
-        closeAfter: 3000
+      this.getCurrentUser();
+      this.set('booking.rental', this.get('rental'));
+      this.set('booking.days', this.get('daysOfStay'));
+      this.set('booking.price', this.get('totalPrice'));
+
+      this.get('bookingService')
+        .saveBooking(this.get('booking'))
+        .then(() => {
+          this.set('booking', Object.create());
+          this.countTakenDates();
+          this.toggleProperty('isShowingModal');
+          this.get('notify').success('Your booking has been successfuly placed', {
+          closeAfter: 3000
+          });
+        })
+        .catch(reason => {
+          this.set('errorMessages', reason.errors || reason.responseJSON.errors);
       });
-    }).catch(reason => {
-      this.set('errorMessages', reason.errors || reason.responseJSON.errors);
-    });
     }
   }
 });
