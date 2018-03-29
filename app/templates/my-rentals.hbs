@@ -1,9 +1,7 @@
 <section id="rentalListing" class="rental-owner">
   <h1 class="title">My Rentals</h1>
     {{#if model}}
-      <div class="row">
-        {{rental-list rentals=model}}
-      </div>
+      {{rental-list rentals=model}}
     {{else}}
       <div class="row">
         <div class="col-md-8">

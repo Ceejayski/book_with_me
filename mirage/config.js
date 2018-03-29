@@ -28,7 +28,7 @@ export default function() {
 
   this.getMRoute('/secret', authMiddleware, () => {});
 
-  this.postMRoute('/rentals', authMiddleware, function(schema, request) {
+  this.postMRoute('/rentals', authMiddleware, function(schema) {
     const attrs = underscorize(this.normalizedRequestAttrs());
     const rental = schema.rentals.new(attrs);
 
