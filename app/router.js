@@ -13,6 +13,7 @@ Router.map(function() {
   });
   this.route('homes' , {path: 'rentals/:city/homes'});
   this.route('my-rentals' , {path: 'manage/rentals'});
+  this.route('my-bookings' , {path: 'manage/bookings'});
   this.route('register');
   this.route('login');
 });
