@@ -3,8 +3,6 @@
      <h1 class="title">{{errors.firstObject.detail}}</h1>
   {{else}}
     <h1 class="title">Your Home in {{model.firstObject.city}}</h1>
-    <div class="row">
-      {{rental-list rentals=model}}
-    </div>
+    {{rental-list rentals=model}}
   {{/if}}
 </section>

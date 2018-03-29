@@ -28,7 +28,7 @@ export default function() {
 
   this.getMRoute('/secret', authMiddleware, () => {});
 
-  this.postMRoute('/rentals', authMiddleware, function(schema, request) {
+  this.postMRoute('/rentals', authMiddleware, function(schema) {
     const attrs = underscorize(this.normalizedRequestAttrs());
     const rental = schema.rentals.new(attrs);
 
@@ -81,12 +81,15 @@ export default function() {
     return isValid;
   }
 
-
   this.get('/rentals', (schema, request) => {
     let rentals = [];
     const city = request.queryParams['filter[city]'];
+    const customLookup = request.queryParams['customLookup'];
 
-    if (city) {
+    if (customLookup && request.requestHeaders['Authorization']) {
+      const user = parseJwt(request.requestHeaders['Authorization']);
+      rentals = schema.rentals.where({userId: user.userId});
+    } else if (city) {
       rentals = schema.rentals.where({city});
     } else {
       rentals = schema.rentals.all();

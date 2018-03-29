@@ -3,11 +3,11 @@ import { inject as service } from '@ember/service';
 
 export default Component.extend({
   session: service('session'),
-  isLoading: false,
 
   init() {
     this._super(...arguments);
     const registered = this.get('router.currentState.routerJsState.fullQueryParams.r');
+    this.isLoading = false;
     this.set('registered', registered);
     this.set('user', {});
   },

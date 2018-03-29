@@ -7,5 +7,5 @@ moduleForComponent('bwm-navbar', 'Integration | Component | bwm navbar', {
 
 test('it renders', function(assert) {
   this.render(hbs`{{bwm-navbar}}`);
-  assert.equal(this.$('.navbar-brand').text(), 'BookwithMe');
+  assert.equal(this.$('.navbar-brand').text().trim(), 'BookwithMe');
 });
