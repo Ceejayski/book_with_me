@@ -1,7 +1,7 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'book-with-me/tests/helpers/module-for-acceptance';
 
-moduleForAcceptance('Acceptance | search user', {
+moduleForAcceptance('Acceptance | search rental', {
   beforeEach: function() {
     server.create('rental', {city: 'Bratislava'});
     server.create('rental', {city: 'Bratislava'});
@@ -21,5 +21,5 @@ test('search should not find rentals', async function(assert) {
   await fillIn('.bwm-search', 'acbasbmd');
   await click('.btn');
   assert.equal(currentURL(), '/rentals/acbasbmd/homes');
-  assert.equal(find('.title').text().trim(), 'There are no rentals for city acbasbmd');
+  assert.equal(find('.page-title').text().trim(), 'There are no rentals for city acbasbmd');
 });

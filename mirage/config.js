@@ -28,6 +28,11 @@ export default function() {
 
   this.getMRoute('/secret', authMiddleware, () => {});
 
+  this.getMRoute('/bookings', authMiddleware, function(schema, request){
+    const user = parseJwt(request.requestHeaders['Authorization']);
+    return schema.bookings.where({userId: user.userId});
+  });
+
   this.postMRoute('/rentals', authMiddleware, function(schema) {
     const attrs = underscorize(this.normalizedRequestAttrs());
     const rental = schema.rentals.new(attrs);
@@ -64,7 +69,7 @@ export default function() {
   });
 
   function isValidBooking(proposedBooking, rental) {
-    let isValid = false;
+    let isValid = true;
 
     if (rental.bookings && rental.bookings.length) {
        isValid = rental.bookings.models.every(booking => {

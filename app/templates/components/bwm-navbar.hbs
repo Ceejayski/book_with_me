@@ -18,7 +18,7 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             {{#link-to "rentals.new" class="dropdown-item"}} Create Rental {{/link-to}}
             {{#link-to "my-rentals" class="dropdown-item"}} Manage Rentals {{/link-to}}
-            <a class="dropdown-item" href="#">Manage Bookings</a>
+            {{#link-to "my-bookings" class="dropdown-item"}} Manage Bookings {{/link-to}}
           </div>
         </div>
         <a class="nav-item nav-link clickable" {{action 'invalidateSession'}}>Logout</a>
