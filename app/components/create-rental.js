@@ -24,7 +24,8 @@ export default Component.extend({
         this.get('router').transitionTo('rentals.show', rental.get('id'));
       }).catch(reason => {
         this.get('store').deleteRecord(rentalRecord);
-        this.set('errorMessages', reason.errors || reason);});
+        this.set('errorMessages', reason.errors || reason);
+      });
     }
   }
 });

@@ -81,12 +81,15 @@ export default function() {
     return isValid;
   }
 
-
   this.get('/rentals', (schema, request) => {
     let rentals = [];
     const city = request.queryParams['filter[city]'];
+    const customLookup = request.queryParams['customLookup'];
 
-    if (city) {
+    if (customLookup && request.requestHeaders['Authorization']) {
+      const user = parseJwt(request.requestHeaders['Authorization']);
+      rentals = schema.rentals.where({userId: user.userId});
+    } else if (city) {
       rentals = schema.rentals.where({city});
     } else {
       rentals = schema.rentals.all();

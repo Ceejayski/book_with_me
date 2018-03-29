@@ -12,6 +12,7 @@ Router.map(function() {
     this.route('new');
   });
   this.route('homes' , {path: 'rentals/:city/homes'});
+  this.route('my-rentals' , {path: 'manage/rentals'});
   this.route('register');
   this.route('login');
 });
