@@ -12,5 +12,5 @@ export default DS.Model.extend({
   daily_rate: DS.attr(),
   created_at: DS.attr(),
   user: DS.belongsTo('user', {async: true}),
-  bookings: DS.hasMany('booking'),
+  bookings: DS.hasMany('booking')
 });
