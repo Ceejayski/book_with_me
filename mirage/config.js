@@ -93,6 +93,7 @@ export default function() {
 
     if (customLookup && request.requestHeaders['Authorization']) {
       const user = parseJwt(request.requestHeaders['Authorization']);
+
       rentals = schema.rentals.where({userId: user.userId});
     } else if (city) {
       rentals = schema.rentals.where({city});

@@ -1,16 +1,1 @@
-<section id="rentalListing" class="rental-owner">
-  <h1 class="page-title">My Rentals</h1>
-    {{#if model}}
-      {{rental-list rentals=model}}
-    {{else}}
-      <div class="row">
-        <div class="col-md-8">
-          <div class="alert alert-warning">
-            You dont have any rentals currenty created. If you want advertised your property
-            please follow this link.
-            {{#link-to "rentals.new" class="btn btn-bwm"}} Register Rental {{/link-to}}
-          </div>
-        </div>
-      </div>
-    {{/if}}
-</section>
+{{user-rentals rentals=model}}
