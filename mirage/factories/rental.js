@@ -33,6 +33,9 @@ export default Factory.extend({
   },
   daily_rate(){
     return faker.list.random(13,21,33,44,25,13,123,41,23,42,41,54)();
+  },
+  created_at() {
+    return '2018-04-04'
   }
 });
 

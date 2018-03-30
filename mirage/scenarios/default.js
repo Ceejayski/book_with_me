@@ -12,15 +12,13 @@ export default function(server) {
   server.create('booking', {start_at: '2018-04-04', end_at: '2018-04-09', total_price: 2223, days: 4, guests: 2, created_at: '2018-04-03',userId: user2.id, rentalId: rental1.id});
   server.create('booking', {start_at: '2018-04-19', end_at: '2018-04-23', total_price: 523, days: 3, guests: 1, created_at: '2018-04-18', userId: user2.id, rentalId: rental2.id});
 
-  // server.create('rental', {city: 'Bratislava'});
-  // server.create('rental', {city: 'Bratislava'});
-  // server.create('rental', {city: 'Bratislava'});
-  // server.create('rental', {city: 'Bratislava'});
-  // server.create('rental', {city: 'Bratislava'});
-  // server.create('rental', {city: 'New York'});
-  // server.create('rental', {city: 'New York'});
-  // server.create('rental', {city: 'New York'});
-  // server.create('rental', {city: 'New York'});
-  // server.create('rental', {city: 'New York'});
-  // server.create('rental', {city: 'New York'});
+  server.create('rental', {city: 'Bratislava'});
+  server.create('rental', {city: 'Bratislava'});
+  server.create('rental', {city: 'Bratislava'});
+  server.create('rental', {city: 'Bratislava'});
+  server.create('rental', {city: 'Bratislava'});
+  server.create('rental', {city: 'New York'});
+  server.create('rental', {city: 'New York'});
+  server.create('rental', {city: 'New York'});
+  server.create('rental', {city: 'New York'});
 }
