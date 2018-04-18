@@ -17,9 +17,6 @@
     "test": "ember test"
   },
   "devDependencies": {
-    "bcryptjs": "^2.4.3",
-    "bootstrap": "^4.0.0",
-    "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^3.1.0",
     "ember-api-actions": "^0.1.8",
     "ember-bootstrap": "^1.2.1",
@@ -57,11 +54,15 @@
     "ember-simple-google-maps": "^1.0.0",
     "ember-source": "~2.18.0",
     "eslint-plugin-ember": "^5.0.0",
-    "jwt-simple": "^0.5.1",
     "loader.js": "^4.2.3"
   },
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*"
   },
-  "dependencies": {}
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "bootstrap": "^4.0.0",
+    "broccoli-asset-rev": "^2.4.5",
+    "jwt-simple": "^0.5.1"
+  }
 }
