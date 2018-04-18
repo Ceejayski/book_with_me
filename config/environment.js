@@ -35,6 +35,12 @@ module.exports = function(environment) {
     // };
   }
 
+  if (environment === 'production') {
+    ENV['ember-cli-mirage'] = {
+      enabled: true
+    }
+  }
+
   if (environment === 'test') {
     // Testem prefers this...
     ENV.locationType = 'none';

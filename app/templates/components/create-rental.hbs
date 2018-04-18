@@ -1,7 +1,7 @@
 <h1 class="page-title">Create Rental</h1>
 <div class="row session-form">
   <div class="col-md-6">
-    {{#bs-form formLayout=formLayout model=rental onSubmit=(action "submit") as |form|}}
+    {{#bs-form model=rental onSubmit=(action "submit") as |form|}}
       {{form.element controlType="text" label="Title" placeholder="eg. 'Nice Apartment'" property="title"}}
       {{form.element controlType="text" label="City" placeholder="eg. 'New York'" property="city" required=true}}
       {{form.element controlType="text" label="Street" placeholder="eg. 'Baker Street 1'" property="street" required=true}}

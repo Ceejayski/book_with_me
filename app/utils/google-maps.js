@@ -28,7 +28,7 @@ export default EmberObject.extend({
         circle.bindTo('center', marker, 'position');
         map.setCenter(position);
       } else {
-        const position = {lat: 0, lng: 0};
+        const position = {lat: 23, lng: 0};
         const infowindow = new google.maps.InfoWindow({
           content: 'Uuuups, there is a problem to find location on the map, we are trying \
            to resolve problem as fast as possible. Contact host for additional info \
