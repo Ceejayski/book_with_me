@@ -1,5 +1,5 @@
 import Response from 'ember-cli-mirage/response';
-import bcrypt from 'bcrypt';
+import bcrypt from 'npm:bcryptjs';
 import jwt from 'npm:jwt-simple';
 import moment from 'moment';
 import { underscore } from '@ember/string';

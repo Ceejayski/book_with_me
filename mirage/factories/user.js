@@ -1,5 +1,5 @@
 import { Factory } from 'ember-cli-mirage';
-import bcrypt from 'bcrypt';
+import bcrypt from 'npm:bcryptjs';
 
 export default Factory.extend({
   id(i) {
